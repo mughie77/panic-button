@@ -1,14 +1,15 @@
 <?php
 require_once 'includes/header.php';
 
-// Fetch all reports with student names
+// Fetch all reports with student names and class
 $query = "
     SELECT
         r.id,
         r.report_time,
         r.status,
         u.username,
-        s.full_name
+        s.full_name,
+        s.class
     FROM reports r
     JOIN users u ON r.student_user_id = u.id
     JOIN students s ON u.id = s.user_id
@@ -47,22 +48,23 @@ $mysqli->close();
             <table class="table table-striped table-hover" id="reportsTable">
                 <thead>
                     <tr>
-                        <th>ID Laporan</th>
+                        <th>No</th>
                         <th>Waktu</th>
                         <th>Nama Siswa</th>
-                        <th>Username</th>
+                        <th>Kelas</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php if (count($reports) > 0): ?>
+                        <?php $i = 1; ?>
                         <?php foreach ($reports as $report): ?>
                             <tr id="report-row-<?php echo $report['id']; ?>">
-                                <td><?php echo $report['id']; ?></td>
+                                <td><?php echo $i++; ?></td>
                                 <td><?php echo $report['report_time']; ?></td>
                                 <td><?php echo htmlspecialchars($report['full_name']); ?></td>
-                                <td><?php echo htmlspecialchars($report['username']); ?></td>
+                                <td><?php echo htmlspecialchars($report['class']); ?></td>
                                 <td class="status-cell"><?php echo get_status_badge_admin($report['status']); ?></td>
                                 <td>
                                     <select class="form-select form-select-sm status-select" data-report-id="<?php echo $report['id']; ?>">

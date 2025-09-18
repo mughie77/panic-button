@@ -16,7 +16,8 @@ $query = "
         r.report_time,
         r.status,
         u.username,
-        s.full_name
+        s.full_name,
+        s.class
     FROM reports r
     JOIN users u ON r.student_user_id = u.id
     JOIN students s ON u.id = s.user_id

@@ -3,28 +3,35 @@ require_once '../config/config.php';
 require_once '../lib/functions.php';
 
 require_role('guru');
+header('Content-Type: application/json');
 
-$user_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+$response = ['success' => false, 'message' => 'Gagal menghapus data.'];
 
-// Prevent an admin from deleting themselves
-if ($user_id > 0 && $user_id != $_SESSION['user_id']) {
-    // We only need to delete from the 'users' table.
-    // The ON DELETE CASCADE constraint will automatically delete the corresponding row in the 'teachers' table.
-    $stmt = $mysqli->prepare("DELETE FROM users WHERE id = ? AND role = 'guru'");
-    $stmt->bind_param("i", $user_id);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $user_id = isset($_POST['user_id']) ? intval($_POST['user_id']) : 0;
 
-    if ($stmt->execute()) {
-        // Deletion successful
-        redirect('manage_teachers.php?success=delete');
+    if ($user_id > 0) {
+        if ($user_id == $_SESSION['user_id']) {
+            $response['message'] = 'Anda tidak dapat menghapus akun Anda sendiri.';
+        } else {
+            $stmt = $mysqli->prepare("DELETE FROM users WHERE id = ? AND role = 'guru'");
+            $stmt->bind_param("i", $user_id);
+
+            if ($stmt->execute()) {
+                if ($stmt->affected_rows > 0) {
+                    $response['success'] = true;
+                    $response['message'] = 'Data guru berhasil dihapus.';
+                } else {
+                    $response['message'] = 'Data guru tidak ditemukan atau Anda tidak memiliki izin.';
+                }
+            }
+            $stmt->close();
+        }
     } else {
-        // Deletion failed
-        redirect('manage_teachers.php?error=delete');
+        $response['message'] = 'ID guru tidak valid.';
     }
-
-    $stmt->close();
-    $mysqli->close();
-} else {
-    // Invalid ID or trying to delete self
-    redirect('manage_teachers.php');
 }
+
+$mysqli->close();
+echo json_encode($response);
 ?>
