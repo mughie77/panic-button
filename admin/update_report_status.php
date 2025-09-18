@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['report_id']) && isset
     $status = $_POST['status'];
 
     // Validate status value to prevent arbitrary data injection
-    $allowed_statuses = ['Belum Diproses', 'Dalam Penanganan', 'Selesai'];
+    $allowed_statuses = ['Belum Diproses', 'Dalam Penanganan', 'Selesai', 'Laporan Palsu'];
     if (!in_array($status, $allowed_statuses)) {
         echo json_encode(['success' => false, 'message' => 'Status tidak valid.']);
         exit;

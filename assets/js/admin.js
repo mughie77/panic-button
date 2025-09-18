@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
         function getStatusBadge(status) {
             if (status === 'Dalam Penanganan') return '<span class="badge bg-primary">Dalam Penanganan</span>';
             if (status === 'Selesai') return '<span class="badge bg-success">Selesai</span>';
+            if (status === 'Laporan Palsu') return '<span class="badge bg-secondary">Laporan Palsu</span>';
             return '<span class="badge bg-warning text-dark">Belum Diproses</span>';
         }
 
@@ -135,4 +136,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     // ... all other teacher CRUD listeners ...
+
+    // --- CHART.JS INITIALIZATION ---
+    const ctx = document.getElementById('reportChart');
+    if (ctx && typeof reportChartData !== 'undefined') {
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: reportChartData.labels,
+                datasets: [{
+                    label: 'Jumlah Laporan',
+                    data: reportChartData.data,
+                    backgroundColor: [
+                        '#ffc107', // Belum Diproses
+                        '#0dcaf0', // Dalam Penanganan
+                        '#198754', // Selesai
+                        '#6c757d'  // Laporan Palsu
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+            }
+        });
+    }
 });

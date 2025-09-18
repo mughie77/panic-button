@@ -49,7 +49,7 @@ CREATE TABLE `reports` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_user_id` int(11) NOT NULL,
   `report_time` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status` enum('Belum Diproses','Dalam Penanganan','Selesai') NOT NULL DEFAULT 'Belum Diproses',
+  `status` enum('Belum Diproses','Dalam Penanganan','Selesai','Laporan Palsu') NOT NULL DEFAULT 'Belum Diproses',
   PRIMARY KEY (`id`),
   KEY `student_user_id` (`student_user_id`),
   CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`student_user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
