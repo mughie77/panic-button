@@ -1,0 +1,12 @@
+/* General Styles */
+body {
+    padding-top: 56px;
+}
+.panic-button-container {
+    text-align: center;
+    margin: 50px 0;
+}
+.panic-button {
+    font-size: 2rem;
+    padding: 20px 40px;
+}
