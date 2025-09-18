@@ -23,44 +23,52 @@ function get_status_badge($status) {
 }
 ?>
 <div class="container-fluid">
-    <div class="text-center my-4">
-        <h1>Selamat Datang, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
-        <p>Jika Anda dalam keadaan darurat, tekan tombol di bawah ini.</p>
+    <div class="card text-center">
+        <div class="card-header">
+            <h1>Selamat Datang, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
+        </div>
+        <div class="card-body">
+            <p class="lead">Jika Anda dalam keadaan darurat, tekan tombol di bawah ini.</p>
+            <div class="panic-button-container">
+                <button id="panicButton" class="btn btn-danger btn-lg panic-button">
+                    <i class="bi bi-exclamation-triangle-fill"></i> TEKAN TOMBOL PANIK
+                </button>
+            </div>
+            <div id="statusMessage" class="alert mt-3" style="display: none;"></div>
+        </div>
     </div>
 
-    <div class="panic-button-container">
-        <button id="panicButton" class="btn btn-danger btn-lg panic-button">TEKAN TOMBOL PANIK</button>
-    </div>
-
-    <div id="statusMessage" class="alert" style="display: none;"></div>
-
-    <div class="mt-5">
-        <h3>Riwayat Laporan Anda</h3>
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered">
-                <thead class="table-dark">
-                    <tr>
-                        <th>ID Laporan</th>
-                        <th>Waktu</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody id="reportsTableBody">
-                    <?php if (count($reports) > 0): ?>
-                        <?php foreach ($reports as $report): ?>
-                            <tr>
-                                <td><?php echo htmlspecialchars($report['id']); ?></td>
-                                <td><?php echo htmlspecialchars($report['report_time']); ?></td>
-                                <td><?php echo get_status_badge($report['status']); ?></td>
-                            </tr>
-                        <?php endforeach; ?>
-                    <?php else: ?>
+    <div class="card mt-4">
+        <div class="card-header">
+            <h3>Riwayat Laporan Anda</h3>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
                         <tr>
-                            <td colspan="3" class="text-center">Anda belum membuat laporan.</td>
+                            <th>ID Laporan</th>
+                            <th>Waktu</th>
+                            <th>Status</th>
                         </tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody id="reportsTableBody">
+                        <?php if (count($reports) > 0): ?>
+                            <?php foreach ($reports as $report): ?>
+                                <tr>
+                                    <td><?php echo htmlspecialchars($report['id']); ?></td>
+                                    <td><?php echo htmlspecialchars($report['report_time']); ?></td>
+                                    <td><?php echo get_status_badge($report['status']); ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="3" class="text-center">Anda belum membuat laporan.</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

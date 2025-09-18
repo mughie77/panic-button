@@ -107,8 +107,8 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Polling error:', error));
     }
 
-    // Start polling every 10 seconds
-    setInterval(checkForNewReports, 10000);
+    // Start polling every 3 seconds
+    setInterval(checkForNewReports, 3000);
 
 
     // --- DELETE CONFIRMATION ---

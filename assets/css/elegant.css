@@ -1,0 +1,72 @@
+/*
+ * Elegant Theme Stylesheet
+ */
+
+/* --- Typography --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lato:wght@400;700&display=swap');
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #f8f9fa; /* Light grey background */
+}
+
+h1, h2, h3, h4, h5, h6, .navbar-brand, .sidebar-heading {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+/* --- Color Palette & Sidebar --- */
+.sidebar {
+    background-color: #212529; /* Dark sidebar */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.sidebar .sidebar-heading, .sidebar .nav-link {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.sidebar .nav-link:hover {
+    color: #ffffff;
+}
+
+.sidebar .nav-link.active {
+    color: #0d6efd; /* Bootstrap primary blue for active link */
+    background-color: rgba(255, 255, 255, 0.1);
+    border-left: 3px solid #0d6efd;
+}
+
+.sidebar .nav-link .bi {
+    margin-right: 10px;
+    font-size: 1.1rem;
+    vertical-align: middle;
+}
+
+/* --- Main Content & Cards --- */
+.main-content .card {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.main-content .card-header {
+    background-color: #fff;
+    border-bottom: 1px solid #dee2e6;
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+}
+
+.main-content .card-body {
+    padding: 1.5rem;
+}
+
+/* --- Buttons --- */
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}

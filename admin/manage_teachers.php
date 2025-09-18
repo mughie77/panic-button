@@ -19,15 +19,6 @@ $teachers = $result->fetch_all(MYSQLI_ASSOC);
 $mysqli->close();
 ?>
 
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Manajemen Guru</h1>
-    <div class="btn-toolbar mb-2 mb-md-0">
-        <a href="add_teacher.php" class="btn btn-sm btn-outline-secondary">
-            Tambah Guru Baru
-        </a>
-    </div>
-</div>
-
 <?php if (isset($_GET['success'])): ?>
     <div class="alert alert-success">
         <?php
@@ -38,37 +29,47 @@ $mysqli->close();
     </div>
 <?php endif; ?>
 
-<div class="table-responsive">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Nama Lengkap</th>
-                <th>Username</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (count($teachers) > 0): ?>
-                <?php foreach ($teachers as $teacher): ?>
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h1 class="h2 mb-0">Manajemen Guru</h1>
+        <a href="add_teacher.php" class="btn btn-primary btn-sm">
+            <i class="bi bi-plus-circle"></i> Tambah Guru
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
                     <tr>
-                        <td><?php echo htmlspecialchars($teacher['full_name']); ?></td>
-                        <td><?php echo htmlspecialchars($teacher['username']); ?></td>
-                        <td>
-                            <a href="edit_teacher.php?id=<?php echo $teacher['user_id']; ?>" class="btn btn-primary btn-sm">Edit</a>
-                            <!-- Prevent admin from deleting themselves -->
-                            <?php if ($teacher['user_id'] != $_SESSION['user_id']): ?>
-                                <a href="delete_teacher.php?id=<?php echo $teacher['user_id']; ?>" class="btn btn-danger btn-sm delete-btn">Hapus</a>
-                            <?php endif; ?>
-                        </td>
+                        <th>Nama Lengkap</th>
+                        <th>Username</th>
+                        <th>Aksi</th>
                     </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <tr>
-                    <td colspan="3" class="text-center">Belum ada data guru.</td>
-                </tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
+                </thead>
+                <tbody>
+                    <?php if (count($teachers) > 0): ?>
+                        <?php foreach ($teachers as $teacher): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($teacher['full_name']); ?></td>
+                                <td><?php echo htmlspecialchars($teacher['username']); ?></td>
+                                <td>
+                                    <a href="edit_teacher.php?id=<?php echo $teacher['user_id']; ?>" class="btn btn-outline-primary btn-sm">Edit</a>
+                                    <!-- Prevent admin from deleting themselves -->
+                                    <?php if ($teacher['user_id'] != $_SESSION['user_id']): ?>
+                                        <a href="delete_teacher.php?id=<?php echo $teacher['user_id']; ?>" class="btn btn-outline-danger btn-sm delete-btn">Hapus</a>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="3" class="text-center">Belum ada data guru.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 <?php

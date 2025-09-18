@@ -68,53 +68,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Tambah Siswa Baru</h1>
+<div class="card">
+    <div class="card-header">
+        <h1 class="h2">Tambah Siswa Baru</h1>
+    </div>
+    <div class="card-body">
+        <?php if (!empty($errors)): ?>
+            <div class="alert alert-danger">
+                <ul>
+                    <?php foreach ($errors as $error): ?>
+                        <li><?php echo $error; ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+
+        <form action="add_student.php" method="POST">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="full_name" class="form-label">Nama Lengkap</label>
+                        <input type="text" class="form-control" id="full_name" name="full_name" value="<?php echo htmlspecialchars($full_name); ?>" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="class" class="form-label">Kelas</label>
+                        <input type="text" class="form-control" id="class" name="class" value="<?php echo htmlspecialchars($class); ?>" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+            <a href="manage_students.php" class="btn btn-secondary">Batal</a>
+        </form>
+    </div>
 </div>
-
-<?php if (!empty($errors)): ?>
-    <div class="alert alert-danger">
-        <ul>
-            <?php foreach ($errors as $error): ?>
-                <li><?php echo $error; ?></li>
-            <?php endforeach; ?>
-        </ul>
-    </div>
-<?php endif; ?>
-
-<form action="add_student.php" method="POST">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="mb-3">
-                <label for="full_name" class="form-label">Nama Lengkap</label>
-                <input type="text" class="form-control" id="full_name" name="full_name" value="<?php echo htmlspecialchars($full_name); ?>" required>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="mb-3">
-                <label for="class" class="form-label">Kelas</label>
-                <input type="text" class="form-control" id="class" name="class" value="<?php echo htmlspecialchars($class); ?>" required>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>" required>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-                <div class="form-text">Password akan di-hash untuk keamanan.</div>
-            </div>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Simpan</button>
-    <a href="manage_students.php" class="btn btn-secondary">Batal</a>
-</form>
 
 <?php
 require_once 'includes/footer.php';

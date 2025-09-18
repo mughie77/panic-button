@@ -20,15 +20,6 @@ $students = $result->fetch_all(MYSQLI_ASSOC);
 $mysqli->close();
 ?>
 
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Manajemen Siswa</h1>
-    <div class="btn-toolbar mb-2 mb-md-0">
-        <a href="add_student.php" class="btn btn-sm btn-outline-secondary">
-            Tambah Siswa Baru
-        </a>
-    </div>
-</div>
-
 <?php if (isset($_GET['success'])): ?>
     <div class="alert alert-success">
         <?php
@@ -39,36 +30,46 @@ $mysqli->close();
     </div>
 <?php endif; ?>
 
-<div class="table-responsive">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Nama Lengkap</th>
-                <th>Kelas</th>
-                <th>Username</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (count($students) > 0): ?>
-                <?php foreach ($students as $student): ?>
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h1 class="h2 mb-0">Manajemen Siswa</h1>
+        <a href="add_student.php" class="btn btn-primary btn-sm">
+            <i class="bi bi-plus-circle"></i> Tambah Siswa
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
                     <tr>
-                        <td><?php echo htmlspecialchars($student['full_name']); ?></td>
-                        <td><?php echo htmlspecialchars($student['class']); ?></td>
-                        <td><?php echo htmlspecialchars($student['username']); ?></td>
-                        <td>
-                            <a href="edit_student.php?id=<?php echo $student['user_id']; ?>" class="btn btn-primary btn-sm">Edit</a>
-                            <a href="delete_student.php?id=<?php echo $student['user_id']; ?>" class="btn btn-danger btn-sm delete-btn">Hapus</a>
-                        </td>
+                        <th>Nama Lengkap</th>
+                        <th>Kelas</th>
+                        <th>Username</th>
+                        <th>Aksi</th>
                     </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <tr>
-                    <td colspan="4" class="text-center">Belum ada data siswa.</td>
-                </tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
+                </thead>
+                <tbody>
+                    <?php if (count($students) > 0): ?>
+                        <?php foreach ($students as $student): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($student['full_name']); ?></td>
+                                <td><?php echo htmlspecialchars($student['class']); ?></td>
+                                <td><?php echo htmlspecialchars($student['username']); ?></td>
+                                <td>
+                                    <a href="edit_student.php?id=<?php echo $student['user_id']; ?>" class="btn btn-outline-primary btn-sm">Edit</a>
+                                    <a href="delete_student.php?id=<?php echo $student['user_id']; ?>" class="btn btn-outline-danger btn-sm delete-btn">Hapus</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="4" class="text-center">Belum ada data siswa.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 <?php
