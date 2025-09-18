@@ -68,7 +68,12 @@ Ikuti langkah-langkah di bawah ini untuk menjalankan aplikasi di lingkungan serv
   - **Siswa**: `username: siswa`, `password: password`
 - **PENTING**: Segera ganti password ini setelah Anda berhasil login untuk pertama kali.
 
-### 5. Jalankan Aplikasi
+### 5. (Opsional) Tambahkan Suara Notifikasi
+- Untuk mengaktifkan notifikasi suara di dasbor admin, letakkan file suara (`.mp3`, `.wav`, `.ogg`) di dalam direktori `assets/`.
+- Ubah nama file tersebut menjadi `notification.mp3`.
+- Jika Anda tidak menyediakan file ini, fitur notifikasi akan tetap berjalan tanpa suara.
+
+### 6. Jalankan Aplikasi
 - Pastikan server Apache dan MySQL Anda berjalan dari panel kontrol XAMPP.
 - Buka browser Anda dan akses URL berikut:
   ```

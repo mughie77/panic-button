@@ -40,8 +40,11 @@ $mysqli->close();
 
 <div id="statusUpdateMessage" class="alert" style="display: none;"></div>
 
+<!-- Audio element for notification sound -->
+<audio id="notificationSound" src="../assets/notification.mp3" preload="auto"></audio>
+
 <div class="table-responsive">
-    <table class="table table-striped table-sm">
+    <table class="table table-striped table-sm" id="reportsTable">
         <thead>
             <tr>
                 <th>ID Laporan</th>
