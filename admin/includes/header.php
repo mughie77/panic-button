@@ -40,8 +40,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo ($current_page == 'laporan.php') ? 'active' : ''; ?>" href="laporan.php">
+                    <a id="laporanLink" class="nav-link <?php echo ($current_page == 'laporan.php') ? 'active' : ''; ?>" href="laporan.php" style="position: relative;">
                         <i class="bi bi-table"></i> Daftar Laporan
+                        <span id="notificationBadge" class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle" style="display: none;">
+                            <span class="visually-hidden">New alerts</span>
+                        </span>
                     </a>
                 </li>
                 <li class="nav-item">
