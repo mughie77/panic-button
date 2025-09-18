@@ -35,8 +35,13 @@ $current_page = basename($_SERVER['PHP_SELF']);
             </h4>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link <?php echo ($current_page == 'dashboard.php') ? 'active' : ''; ?>" href="dashboard.php">
-                        <i class="bi bi-shield-exclamation"></i> Laporan Panik
+                    <a class="nav-link <?php echo ($current_page == 'beranda.php') ? 'active' : ''; ?>" href="beranda.php">
+                        <i class="bi bi-house-door"></i> Beranda
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?php echo ($current_page == 'laporan.php') ? 'active' : ''; ?>" href="laporan.php">
+                        <i class="bi bi-table"></i> Daftar Laporan
                     </a>
                 </li>
                 <li class="nav-item">

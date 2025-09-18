@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Redirect user to the appropriate dashboard
             if ($role === 'guru') {
-                redirect('admin/dashboard.php');
+                redirect('admin/beranda.php');
             } else {
                 redirect('student/dashboard.php');
             }
